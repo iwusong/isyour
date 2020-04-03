@@ -132,7 +132,7 @@ fh.write(json.dumps(classname, ensure_ascii=False))
 fh.close()
 
 for movieclass in t:
-    sp(t[movieclass], 20, './class/' + movieclass + '/', 0)
+    sp(t[movieclass], 36, './class/' + movieclass + '/', 0)
     file_names = os.listdir('./class/' + movieclass + '/')
 
     for num in range(len(file_names)):
