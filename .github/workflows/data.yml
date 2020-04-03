@@ -34,7 +34,8 @@ jobs:
       run: |
         git config --local user.email "ruytzzzgo@gmail.com"
         git config --local user.name "RuytzzZ"
-        git commit -m "Add changes" -a
+        git add *
+        git commit -m "push"
     - name: Push date
       uses: ad-m/github-push-action@master
       with:
