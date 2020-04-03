@@ -25,9 +25,9 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    - name: Lint with flake8
+    - name: run main.py
       run: |
-        pip install flake8
+
         python main.py
 
     - name: Commit files
@@ -35,7 +35,7 @@ jobs:
         git config --local user.email "ruytzzzgo@gmail.com"
         git config --local user.name "RuytzzZ"
         git commit -m "Add changes" -a
-    - name: Push changes
+    - name: Push date
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.token }}
