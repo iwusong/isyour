@@ -1,4 +1,3 @@
-
 from concurrent.futures import ThreadPoolExecutor
 import shutil
 import os
@@ -10,51 +9,51 @@ u = baseurl+'?ac=videolist&pg='
 
 
 
-try:
-    shutil.rmtree('./zlog')
-    shutil.rmtree('./zdata')
-except Exception as e:
-    print(e)
+# try:
+#     shutil.rmtree('./zlog')
+#     shutil.rmtree('./zdata')
+# except Exception as e:
+#     print(e)
 
 
-try:
-    os.mkdir('./zlog')
-    os.mkdir('./zdata')
-except Exception as e:
-    print(e)
+# try:
+#     os.mkdir('./zlog')
+#     os.mkdir('./zdata')
+# except Exception as e:
+#     print(e)
 
 
-def to(n):
-    try:
-        res = requests.get(u + str(n), timeout=(5, 10))
-        a = res.content.decode('utf-8')
-        b = json.dumps(xmltodict.parse(a), ensure_ascii=False)
-        fh = open('./zdata/' + str(n) + '.json', 'w', encoding='utf-8')
-        fh.write(b)
-        fh.close()
-    except Exception as e:
-        print('pg:',n)
-        print(e)
-        fh = open('./zlog/' + str(n) + '.err', 'a+', encoding='utf-8')
-        fh.write(str(e))
-        fh.write('\n')
-        fh.close()
-        print('重发')
-        to(n)
+# def to(n):
+#     try:
+#         res = requests.get(u + str(n), timeout=(5, 10))
+#         a = res.content.decode('utf-8')
+#         b = json.dumps(xmltodict.parse(a), ensure_ascii=False)
+#         fh = open('./zdata/' + str(n) + '.json', 'w', encoding='utf-8')
+#         fh.write(b)
+#         fh.close()
+#     except Exception as e:
+#         print('pg:',n)
+#         print(e)
+#         fh = open('./zlog/' + str(n) + '.err', 'a+', encoding='utf-8')
+#         fh.write(str(e))
+#         fh.write('\n')
+#         fh.close()
+#         print('重发')
+#         to(n)
  
 
-def getpage():
-    try:
-        pgn=int(xmltodict.parse( requests.get(u, timeout=(10, 20)).content.decode('utf-8'))['rss']['list']['@pagecount'])+1 
-    except Exception as e:
-        getpage()
+# def getpage():
+#     try:
+#         pgn=int(xmltodict.parse( requests.get(u, timeout=(10, 20)).content.decode('utf-8'))['rss']['list']['@pagecount'])+1 
+#     except Exception as e:
+#         getpage()
     
-    return  pgn
+#     return  pgn
 
 
-with ThreadPoolExecutor(max_workers=30) as t:  # 创建一个 线程池
-    for i in range(1,getpage()):
-        t.submit(to, i)
+# with ThreadPoolExecutor(max_workers=30) as t:  # 创建一个 线程池
+#     for i in range(1,getpage()):
+#         t.submit(to, i)
 
 
 
@@ -105,14 +104,11 @@ for i in file_names:
 print(len(vlist))
 
 vlist= sorted(vlist,key=lambda a: a['last'] ,reverse=True) 
-# 排序
-
-
 
 # fh = open('./z.json', 'w', encoding='utf-8')
 # fh.write(json.dumps(vlist, ensure_ascii=False))
 # fh.close()
-# # 写出总列表json 到文件 z.json
+# 写出总列表json 到文件 z.json
 
 for i in vlist:
     t[i['type']] = []
@@ -121,6 +117,7 @@ for j in vlist:
     t[j['type']].append(j)
 
 # 生成 总分类 数据
+
 
 # fh = open('./t.json', 'w', encoding='utf-8')
 # fh.write(json.dumps(t, ensure_ascii=False))
@@ -137,7 +134,7 @@ fh.write(json.dumps(classname, ensure_ascii=False))
 fh.close()
 
 for movieclass in t:
-    sp(t[movieclass], 36, './class/' + movieclass + '/', 0)
+    sp(t[movieclass], 24, './class/' + movieclass + '/', 0)
     file_names = os.listdir('./class/' + movieclass + '/')
 
     for num in range(len(file_names)):
