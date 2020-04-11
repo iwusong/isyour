@@ -1,12 +1,12 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: clone
+name: delate
 
 on:
   push:
-    branches: 
-      - clone
+    paths: 
+      - 'delate.js'
  
 
 jobs:
@@ -19,12 +19,13 @@ jobs:
     - name: 删除数据文件
       run: |
         rm -rf class zdata zlog t.json
+        
     - name: Commit files
       run: |
         git config --local user.email "ruytzzzgo@gmail.com"
         git config --local user.name "RuytzzZ"
         git add *
-        git commit -m "push"
+        git commit -m "delate"
     - name: Push date
       uses: ad-m/github-push-action@master
       with:
