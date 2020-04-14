@@ -122,9 +122,9 @@ for j in vlist:
 
 # 生成 总分类 数据
 
-fh = open('./t.json', 'w', encoding='utf-8')
-fh.write(json.dumps(t, ensure_ascii=False))
-fh.close()
+# fh = open('./t.json', 'w', encoding='utf-8')
+# fh.write(json.dumps(t, ensure_ascii=False))
+# fh.close()
 # 写出总列表t.json  
 
 
@@ -137,7 +137,7 @@ fh.write(json.dumps(classname, ensure_ascii=False))
 fh.close()
 
 for movieclass in t:
-    sp(t[movieclass], 36, './class/' + movieclass + '/', 0)
+    sp(t[movieclass], 24, './class/' + movieclass + '/', 0)
     file_names = os.listdir('./class/' + movieclass + '/')
 
     for num in range(len(file_names)):
