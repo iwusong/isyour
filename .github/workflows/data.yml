@@ -17,6 +17,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: clear
+        run: |
+          git filter-branch --force --index-filter "git rm -rf --cached --ignore-unmatch class zdata zlog t.json z.json" --prune-empty --tag-name-filter cat -- --all
+
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
         with:
@@ -36,7 +42,5 @@ jobs:
           git config --local user.name "RuytzzZ"
           git add *
           git commit -m "push"
-      - name: Push date
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.token }}
+          git push --force
+ 

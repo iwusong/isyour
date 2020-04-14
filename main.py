@@ -122,9 +122,9 @@ for j in vlist:
 
 # 生成 总分类 数据
 
-# fh = open('./t.json', 'w', encoding='utf-8')
-# fh.write(json.dumps(t, ensure_ascii=False))
-# fh.close()
+fh = open('./t.json', 'w', encoding='utf-8')
+fh.write(json.dumps(t, ensure_ascii=False))
+fh.close()
 # 写出总列表t.json  
 
 

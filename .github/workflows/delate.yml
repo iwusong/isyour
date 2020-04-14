@@ -5,28 +5,21 @@ name: delate
 
 on:
   push:
-    paths: 
-      - 'delate.js'
- 
+    paths:
+      - "delate.js"
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: 删除数据文件
-      run: |
-        rm -rf class zdata zlog t.json
-        
-    - name: Commit files
-      run: |
-        git config --local user.email "ruytzzzgo@gmail.com"
-        git config --local user.name "RuytzzZ"
-        git add *
-        git commit -m "delate"
-    - name: Push date
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.token }}
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: 删除数据文件
+        run: |
+          git filter-branch --force --index-filter "git rm -rf --cached --ignore-unmatch class zdata zlog t.json z.json" --prune-empty --tag-name-filter cat -- --all
+          git config --local user.email "ruytzzzgo@gmail.com"
+          git config --local user.name "RuytzzZ"
+
+          git push --force
