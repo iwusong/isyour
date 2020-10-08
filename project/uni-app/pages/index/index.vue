@@ -192,11 +192,7 @@
 				this.$refs.ddd.open()
 			},
 			doleftclick() {
-				plus.nativeUI.prompt('输入更换的源地址', (event) => {
-					console.log(event)
-					this.url = event.value + '?'
-					this.first()
-				}, '设置', '');
+				 
 			},
 		}
 	}
