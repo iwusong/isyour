@@ -5,7 +5,7 @@ import os
 import requests
 import xmltodict, json
 
-baseurl='http://www.zdziyuan.com/inc/api_zuidam3u8.php'
+baseurl='http://api.fqzy.cc/api.php/provide/vod/'
 u = baseurl+'?ac=videolist&pg='
 
 
